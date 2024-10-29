@@ -1,0 +1,30 @@
+.newsItem {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	gap: 0.75rem;
+}
+
+.imageWrapper {
+	width: 4rem;
+	height: 4rem;
+	background-color: #f2f4f5;
+	background-position: center;
+	background-size: cover;
+	flex-shrink: 0;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.title {
+	font-size: 0.875rem;
+}
+
+.extra {
+	font-size: 0.75rem;
+	color: #6c7072;
+}
