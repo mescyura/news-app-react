@@ -7,6 +7,7 @@ export const getNews = async ({
 	page_number = 1,
 	page_size = 10,
 	category,
+	keywords,
 }) => {
 	const options = {
 		params: {
@@ -14,6 +15,7 @@ export const getNews = async ({
 			page_number,
 			page_size,
 			category,
+			keywords,
 		},
 	};
 
