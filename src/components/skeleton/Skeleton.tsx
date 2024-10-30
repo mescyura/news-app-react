@@ -1,6 +1,12 @@
+import React from 'react';
 import classes from './style.module.css';
 
-function Skeleton({ count = 1, type = 'banner' }) {
+interface SkeletonProps {
+	count: number;
+	type: 'banner' | 'item';
+}
+
+const Skeleton: React.FC<SkeletonProps> = ({ count = 1, type = 'banner' }) => {
 	return (
 		<>
 			{count > 1 ? (
@@ -17,6 +23,6 @@ function Skeleton({ count = 1, type = 'banner' }) {
 			)}
 		</>
 	);
-}
+};
 
 export default Skeleton;
