@@ -1,5 +1,7 @@
 import withSkeleton from '../../hocs/withSkeleton';
+
 import NewsListItem from '../newsListItem/NewsListItem';
+
 import classes from './style.module.css';
 
 const NewsList = ({ news }) => {
@@ -12,6 +14,6 @@ const NewsList = ({ news }) => {
 	);
 };
 
-const NewsListWithSkeleton = withSkeleton(NewsList, 'item', 10);
+const NewsListWithSkeleton = withSkeleton(NewsList, 'item', 10, 'column');
 
 export default NewsListWithSkeleton;
