@@ -1,7 +1,14 @@
-.skeletonList {
+.skeletonColumnList {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 16px;
+}
+
+.skeletonRowList {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	width: 100%;
+	gap: 16px;
 }
 
 .banner {
@@ -17,9 +24,15 @@
 
 .banner,
 .item {
-	background: linear-gradient(-90deg, #f0f0f0 0%, #e5e5e5 50%, #f0f0f0 100%);
+	background: linear-gradient(
+		-90deg,
+		#fafafa 0%,
+		#e7e7e7 40%,
+		#e7e7e7 60%,
+		#fafafa 100%
+	);
 	background-size: 400% 400%;
-	animation: pulse 1.2s ease-in-out infinite;
+	animation: pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
