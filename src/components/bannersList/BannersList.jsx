@@ -14,6 +14,6 @@ const BannersList = ({ bannersList }) => {
 	);
 };
 
-const BannersListWithSkeleton = withSkeleton(BannersList, 'banner', 9, 'row');
+const BannersListWithSkeleton = withSkeleton(BannersList, 'banner', 12, 'row');
 
 export default BannersListWithSkeleton;
