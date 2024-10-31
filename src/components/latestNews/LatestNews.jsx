@@ -1,11 +1,20 @@
+import { getLatestNews } from '../../api/apiNews';
+
+import { useFetch } from '../../hooks/useFetch';
+
 import BannersList from '../bannersList/BannersList';
 
 import classes from './style.module.css';
 
-function LatestNews({ bannersList, isLoading }) {
+function LatestNews() {
+	const { data, isLoading } = useFetch(getLatestNews);
+
+	console.log(data);
+
 	return (
 		<section className={classes.latestNews}>
-			<BannersList bannersList={bannersList} isLoading={isLoading} />
+			<h3 className={classes.title}>Latest news</h3>
+			<BannersList bannersList={data && data?.news} isLoading={isLoading} />
 		</section>
 	);
 }
