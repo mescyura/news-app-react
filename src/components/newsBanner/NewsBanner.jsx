@@ -1,8 +1,9 @@
 import { formatTimeAgo } from '../../helpers/formatTimeAgo';
 import Image from '../image/Image';
 import classes from './style.module.css';
+import withSkeleton from '../../hocs/withSkeleton';
 
-function NewsBanner({ news }) {
+const NewsBanner = ({ news }) => {
 	return (
 		<div className={classes.newsBanner}>
 			<Image image={news?.image} />
@@ -12,6 +13,8 @@ function NewsBanner({ news }) {
 			</p>
 		</div>
 	);
-}
+};
 
-export default NewsBanner;
+const NewsBannerWithSkeleton = withSkeleton(NewsBanner, 'banner', 1);
+
+export default NewsBannerWithSkeleton;
