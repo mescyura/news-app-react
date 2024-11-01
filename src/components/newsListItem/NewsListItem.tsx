@@ -1,9 +1,15 @@
-import { formatTimeAgo } from '../../helpers/formatTimeAgo';
-import noimg from '../../assets/noimg.jpg';
+import { INews } from '../../interfaces';
 
+import { formatTimeAgo } from '../../helpers/formatTimeAgo';
+
+import noimg from '../../assets/noimg.jpg';
 import classes from './style.module.css';
 
-function NewsListItem({ item }) {
+interface Props {
+	item: INews;
+}
+
+function NewsListItem({ item }: Props) {
 	return (
 		<li className={classes.newsItem}>
 			<div

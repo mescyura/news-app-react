@@ -1,10 +1,12 @@
+import { NewsApiResponse, ParamsType } from '../../interfaces';
+
 import { PAGE_SIZE, TOTAL_PAGES } from '../../constants/constants';
+
+import { getNews } from '../../api/apiNews';
 
 import { useFetch } from '../../hooks/useFetch';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useFilter } from '../../hooks/useFilters';
-
-import { getNews } from '../../api/apiNews';
 
 import NewsFilters from '../newsFilters/NewsFilters';
 import NewsList from '../newsList/NewsList';
@@ -22,7 +24,7 @@ function NewsByFilters() {
 
 	const debouncedKeywords = useDebounce(filters.keywords, 1500);
 
-	const { data, isLoading } = useFetch(getNews, {
+	const { data, isLoading } = useFetch<NewsApiResponse, ParamsType>(getNews, {
 		...filters,
 		keywords: debouncedKeywords,
 	});
@@ -32,7 +34,7 @@ function NewsByFilters() {
 			changeFilter('page_number', filters.page_number - 1);
 	};
 
-	const handleChangePage = pageNumber => {
+	const handleChangePage = (pageNumber: number) => {
 		changeFilter('page_number', pageNumber);
 	};
 
