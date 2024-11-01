@@ -9,8 +9,6 @@ import classes from './style.module.css';
 function LatestNews() {
 	const { data, isLoading } = useFetch(getLatestNews);
 
-	console.log(data);
-
 	return (
 		<section className={classes.latestNews}>
 			<h3 className={classes.title}>Latest news</h3>
