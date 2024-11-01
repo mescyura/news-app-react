@@ -1,7 +1,11 @@
 import classes from './style.module.css';
 import noimg from '../../assets/noimg.jpg';
 
-function Image({ image }) {
+interface Props {
+	image: string;
+}
+
+function Image({ image }: Props) {
 	return (
 		<div className={classes.wrapper}>
 			{image ? (
