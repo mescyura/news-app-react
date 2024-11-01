@@ -1,6 +1,7 @@
 import { getCategories } from '../../api/apiNews';
 
 import { useFetch } from '../../hooks/useFetch';
+import { CategoriesApiResponse, IFilters } from '../../interfaces';
 
 import Categories from '../categories/Categories';
 import Search from '../search/Search';
@@ -8,8 +9,15 @@ import Slider from '../slider/Slider';
 
 import classes from './style.module.css';
 
-function NewsFilters({ filters, changeFilter }) {
-	const { data: dataCategories } = useFetch(getCategories);
+interface Props {
+	filters: IFilters;
+	changeFilter: (key: string, value: string | number | null) => void;
+}
+
+function NewsFilters({ filters, changeFilter }: Props) {
+	const { data: dataCategories } = useFetch<CategoriesApiResponse, null>(
+		getCategories
+	);
 
 	return (
 		<div className={classes.newsFilters}>
