@@ -1,6 +1,8 @@
 .header {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	gap: 0.375rem;
 	width: 100%;
 	padding: 0.75em 1.5em;
@@ -8,10 +10,19 @@
 	background-color: #fff;
 }
 
+.dark {
+	background-color: #23272f;
+	border-bottom: 1px solid rgb(60, 60, 60);
+}
+.light {
+	background-color: white;
+}
+
 .title {
 	font-size: 1.75rem;
+	padding-bottom: 6px;
 }
 
 .date {
-	font-size: 1rem;
+	font-size: 0.75rem;
 }

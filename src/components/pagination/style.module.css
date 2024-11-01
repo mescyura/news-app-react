@@ -35,3 +35,32 @@
 .paginationArrow:hover {
 	border: 1px solid #000;
 }
+
+/* Theme */
+
+.pagination.dark .paginationBtn,
+.pagination.dark .paginationArrow {
+	background-color: #23272f;
+	color: #f6f7f9;
+}
+
+.pagination.dark .paginationBtn:disabled {
+	cursor: auto;
+	color: #000;
+	background-color: #f2f4f5;
+}
+
+.pagination.dark .paginationBtn:hover,
+.pagination.dark .paginationArrow:hover {
+	border: 1px solid #ffffff;
+}
+
+.pagination.dark .paginationBtn:disabled:hover,
+.paginationArrow:disabled:hover {
+	border: 1px solid transparent;
+}
+
+.pagination.light .paginationBtn,
+.pagination.light .paginationArrow {
+	color: black;
+}
