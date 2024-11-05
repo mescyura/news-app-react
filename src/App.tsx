@@ -1,7 +1,8 @@
-import './App.css';
 import Header from './components/header/Header';
 import Main from './pages/main/Main';
 import { useTheme } from './context/ThemeContext';
+
+import './App.css';
 
 function App() {
 	const { isDark } = useTheme();
