@@ -1,51 +1,49 @@
-import { NewsApiResponse, ParamsType } from '../../interfaces';
+import { TOTAL_PAGES } from '../../constants/constants';
 
-import { PAGE_SIZE, TOTAL_PAGES } from '../../constants/constants';
-
-import { getNews } from '../../api/apiNews';
-
-import { useFetch } from '../../hooks/useFetch';
+import { useGetNewsQuery } from '../../store/services/newsApi';
 import { useDebounce } from '../../hooks/useDebounce';
-import { useFilter } from '../../hooks/useFilters';
 
 import NewsFilters from '../newsFilters/NewsFilters';
 import NewsList from '../newsList/NewsList';
 import PaginationWrapper from '../paginationWrapper/PaginationWrapper';
 
 import classes from './style.module.css';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { setFilters } from '../../store/slices/newsSlice';
 
 function NewsByFilters() {
-	const { filters, changeFilter } = useFilter({
-		page_number: 1,
-		page_size: PAGE_SIZE,
-		category: null,
-		keywords: '',
-	});
+	const dispatch = useAppDispatch();
+
+	const filters = useAppSelector(state => state.news.filters);
 
 	const debouncedKeywords = useDebounce(filters.keywords, 1500);
 
-	const { data, isLoading } = useFetch<NewsApiResponse, ParamsType>(getNews, {
+	const { data, isLoading } = useGetNewsQuery({
 		...filters,
 		keywords: debouncedKeywords,
 	});
 
 	const handlePrevPage = () => {
 		if (filters.page_number > 1)
-			changeFilter('page_number', filters.page_number - 1);
+			dispatch(
+				setFilters({ key: 'page_number', value: filters.page_number - 1 })
+			);
 	};
 
 	const handleChangePage = (pageNumber: number) => {
-		changeFilter('page_number', pageNumber);
+		dispatch(setFilters({ key: 'page_number', value: pageNumber }));
 	};
 
 	const handleNextPage = () => {
 		if (filters.page_number < TOTAL_PAGES)
-			changeFilter('page_number', filters.page_number + 1);
+			dispatch(
+				setFilters({ key: 'page_number', value: filters.page_number + 1 })
+			);
 	};
 
 	return (
 		<section className={classes.newsByFilters}>
-			<NewsFilters filters={filters} changeFilter={changeFilter} />
+			<NewsFilters filters={filters} />
 
 			<PaginationWrapper
 				top
