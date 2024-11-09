@@ -1,6 +1,20 @@
-.newsList {
+.newsItems {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
+}
+
+.newsBanners {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	width: 100%;
+	gap: 12px;
+}
+
+@media (min-width: 768px) {
+	.newsBanners {
+		max-height: 1200px;
+		overflow-y: auto;
+	}
 }

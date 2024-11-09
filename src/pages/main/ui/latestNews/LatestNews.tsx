@@ -1,6 +1,6 @@
 import { useGetLatestNewsQuery } from '@/entities/news/api/newsApi';
 
-import BannersListWithSkeleton from '@/widgets/news/ui/bannersList/BannersList';
+import { NewsList } from '@/widgets/news';
 
 import classes from './style.module.css';
 
@@ -10,8 +10,10 @@ function LatestNews() {
 	return (
 		<section className={classes.latestNews}>
 			<h3 className={classes.title}>Latest news</h3>
-			<BannersListWithSkeleton
-				bannersList={data && data.news}
+			<NewsList
+				news={data && data.news}
+				type='banner'
+				direction='row'
 				isLoading={isLoading}
 			/>
 		</section>

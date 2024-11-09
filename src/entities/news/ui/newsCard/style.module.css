@@ -1,11 +1,15 @@
-.newsItem {
+.card {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	gap: 0.75rem;
 }
 
-.imageWrapper {
+.banner {
+	flex-direction: column;
+}
+
+.cardImageWrapper {
 	width: 4rem;
 	height: 4rem;
 	background-color: #f2f4f5;
@@ -14,17 +18,17 @@
 	flex-shrink: 0;
 }
 
-.info {
+.cardInfo {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
 }
 
-.title {
+.cardTitle {
 	font-size: 0.875rem;
 }
 
-.extra {
+.cardExtra {
 	font-size: 0.75rem;
 	color: #6c7072;
 }
