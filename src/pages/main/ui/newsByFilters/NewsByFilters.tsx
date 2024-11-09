@@ -1,19 +1,14 @@
-import { useAppDispatch, useAppSelector } from '@/app/appStore';
+import { useAppSelector } from '@/app/appStore';
 import { useGetNewsQuery } from '@/entities/news/api/newsApi';
-import { setFilters } from '@/entities/news/model/newsSlice';
-
-import { TOTAL_PAGES } from '@/shared/constants/constants';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 
-import { NewsList } from '@/widgets/news/ui';
-import { Pagination } from '@/features/pagination';
-import NewsFilters from '../newsFilters/NewsFilters';
+import { NewsFilters } from '@/widgets/news';
+import { useGetCategoriesQuery } from '@/entities/categories/api/categoriesApi';
 
 import classes from './style.module.css';
+import NewsListWithPagination from '../newsListWithPagination/newsListWithPagination';
 
 function NewsByFilters() {
-	const dispatch = useAppDispatch();
-
 	const filters = useAppSelector(state => state.news.filters);
 
 	const debouncedKeywords = useDebounce(filters.keywords, 1500);
@@ -23,39 +18,20 @@ function NewsByFilters() {
 		keywords: debouncedKeywords,
 	});
 
-	const handlePrevPage = () => {
-		if (filters.page_number > 1)
-			dispatch(
-				setFilters({ key: 'page_number', value: filters.page_number - 1 })
-			);
-	};
-
-	const handleChangePage = (pageNumber: number) => {
-		dispatch(setFilters({ key: 'page_number', value: pageNumber }));
-	};
-
-	const handleNextPage = () => {
-		if (filters.page_number < TOTAL_PAGES)
-			dispatch(
-				setFilters({ key: 'page_number', value: filters.page_number + 1 })
-			);
-	};
+	const { data: categories } = useGetCategoriesQuery(null);
 
 	return (
 		<section className={classes.newsByFilters}>
-			<NewsFilters filters={filters} />
+			<NewsFilters
+				filters={filters}
+				categories={categories?.categories || []}
+			/>
 
-			<Pagination
-				top
-				bottom
-				currentPage={filters.page_number}
-				totalPages={TOTAL_PAGES}
-				handlePrevPage={handlePrevPage}
-				handleChangePage={handleChangePage}
-				handleNextPage={handleNextPage}
-			>
-				<NewsList isLoading={isLoading} news={data?.news} />
-			</Pagination>
+			<NewsListWithPagination
+				filters={filters}
+				news={data && data.news}
+				isLoading={isLoading}
+			/>
 		</section>
 	);
 }
